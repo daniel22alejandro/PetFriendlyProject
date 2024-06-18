@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import path from 'path'; // Necesario para path.join
+
 import conexion from './src/database/ConexionBD.js';
 import userRoutes from './src/routes/UsersRoute.js';
 import raceRoutes from './src/routes/RacesRoute.js';

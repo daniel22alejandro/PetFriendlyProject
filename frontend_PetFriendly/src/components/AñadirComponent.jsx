@@ -1,6 +1,7 @@
+// src/components/AñadirComponent.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../services/axiosConfig"; // Importa la instancia configurada
 
 const AñadirComponent = () => {
     const navigate = useNavigate();
@@ -17,7 +18,8 @@ const AñadirComponent = () => {
     useEffect(() => {
         const fetchRazas = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/races/listar");
+                const response = await axios.get("/races/listar");
+                console.log("races:", response.data);
                 setRaceIds(response.data);
             } catch (error) {
                 console.error("Error fetching razas:", error);
@@ -26,7 +28,8 @@ const AñadirComponent = () => {
 
         const fetchCategorias = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/categories/listar");
+                const response = await axios.get("/categories/listar");
+                console.log("categories:", response.data);
                 setCategoryIds(response.data);
             } catch (error) {
                 console.error("Error fetching categorias:", error);
@@ -35,7 +38,8 @@ const AñadirComponent = () => {
 
         const fetchGeneros = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/genders/listar");
+                const response = await axios.get("/genders/listar");
+                console.log("genders:", response.data);
                 setGenderIds(response.data);
             } catch (error) {
                 console.error("Error fetching generos:", error);
@@ -48,7 +52,6 @@ const AñadirComponent = () => {
     }, []);
 
     const handleRegistro = async () => {
-        // Verificar si algún campo está vacío
         if (!name || !race_id || !category_id || !photo || !gender_id) {
             setMessage("Todos los campos deben estar llenos.");
             return;
@@ -62,19 +65,7 @@ const AñadirComponent = () => {
             formData.append("photo", photo);
             formData.append("gender_id", gender_id);
 
-            const token = localStorage.getItem("token"); // Obtener token de localStorage
-            if (!token) {
-                navigate('/'); // Redirige si no hay token
-                return;
-            }
-
-            const config = {
-                headers: {
-                    'token': token // Utilizar token directamente
-                }
-            };
-
-            const response = await axios.post("http://localhost:3000/pets/registrar", formData, config);
+            const response = await axios.post("/pets/registrar", formData);
             setMessage(response.data.message);
         } catch (error) {
             setMessage(error.response ? error.response.data.message : "Error en el registro");
@@ -106,7 +97,7 @@ const AñadirComponent = () => {
                         <select className="w-[360px] pl-4 rounded-full outline-none h-[50px] opacity-60 bg-slate-100 placeholder:text-sky-800 hover:bg-slate-200" onChange={(e) => setRaceId(e.target.value)} defaultValue="">
                             <option value="" disabled hidden>Seleccione Raza...</option>
                             {race_ids.map((race) => (
-                                <option key={race._id} value={race._id}>{race.name}</option>
+                                <option key={race._id} value={race._id}>{race.name_races}</option>
                             ))}
                         </select>
                     </div>
@@ -117,7 +108,7 @@ const AñadirComponent = () => {
                         <select className="w-[360px] pl-4 rounded-full outline-none h-[50px] opacity-60 bg-slate-100 placeholder:text-sky-800 hover:bg-slate-200" onChange={(e) => setCategoryId(e.target.value)} defaultValue="">
                             <option value="" disabled hidden>Seleccione Categoría...</option>
                             {category_ids.map((category) => (
-                                <option key={category._id} value={category._id}>{category.name}</option>
+                                <option key={category._id} value={category._id}>{category.name_categories}</option>
                             ))}
                         </select>
                     </div>
@@ -133,7 +124,7 @@ const AñadirComponent = () => {
                     <select className="w-[360px] pl-4 rounded-full outline-none h-[50px] opacity-60 bg-slate-100 placeholder:text-sky-800 hover:bg-slate-200" onChange={(e) => setGenderId(e.target.value)} defaultValue="">
                         <option value="" disabled hidden>Seleccione Género...</option>
                         {gender_ids.map((gender) => (
-                            <option key={gender._id} value={gender._id}>{gender.name}</option>
+                            <option key={gender._id} value={gender._id}>{gender.name_genders}</option>
                         ))}
                     </select>
                 </div>
