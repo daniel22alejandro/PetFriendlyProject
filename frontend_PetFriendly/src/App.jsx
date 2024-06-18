@@ -14,8 +14,8 @@ function App() {
         <Route path='/' element={<InicioLoginPage />} />
         <Route path='/lista' element={<ListarPage />} />
         <Route path='/añadir' element={<AñadirPage />} />
-        <Route path='/consulta' element={<ConsultaPage />} />
-        <Route path='/editar' element={<EditarPage />} />
+        <Route path='/consulta/:id' element={<ConsultaPage />} />
+        <Route path='/editar/:id' element={<EditarPage />} />
       </Routes>
     </Router>
   );
