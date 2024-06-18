@@ -1,7 +1,6 @@
-// src/components/AñadirComponent.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../services/axiosConfig"; // Importa la instancia configurada
+import axios from "../services/axiosConfig"; 
 
 const AñadirComponent = () => {
     const navigate = useNavigate();

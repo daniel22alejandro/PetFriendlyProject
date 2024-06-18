@@ -47,7 +47,7 @@ const ConsultaComponent = () => {
                     <p>Consultar Mascota</p>
                     <Link to='/' className="bg-[url('../../imgs/btn-close.svg')] w-[34px] h-[34px] flex absolute left-52 cursor-pointer"></Link>
                 </div>
-                <img src={`http://localhost:3000/${mascota.photo}`} alt={mascota.name} className="w-[152px] h-[153px] flex absolute top-32" />
+                <img src={`http://localhost:3000/img/${mascota.photo}`} alt={mascota.name} className="w-[152px] h-[153px] flex absolute top-32" />
                 <div className="flex flex-col justify-center items-center">
                     <div className="flex flex-row absolute w-[350px] top-[350px]">
                         <div className="flex bg-slate-400 w-5/12 h-[55px] text-white rounded-l-xl items-center pl-4 text-lg">Nombre:</div>

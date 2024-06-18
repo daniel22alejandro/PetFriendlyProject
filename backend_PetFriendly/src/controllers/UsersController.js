@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
         // Guardar el nuevo usuario en la base de datos
         const savedUser = await newUser.save();
 
-        // Devolver la respuesta con el usuario y el ¿token?
+        // Devolver la respuesta con el usuario y el token o el mensaje de error
         res.status(200).json({ message: 'Usuario registrado con éxito', user: savedUser });
     } catch (error) {
         res.status(500).json({ message: 'Error en el servidor: ' + error.message });

@@ -12,7 +12,7 @@ export const generateToken = (userId, email) => {
     return jwt.sign({ userId, email }, secretKey, { expiresIn: '24h' });
 };
 
-// Función para validar un token JWT con una cabecera personalizada
+// Función para validar un token JWT 
 export const authenticateToken = (req, res, next) => {
     try {
         const token = req.headers.token;
@@ -37,13 +37,13 @@ export const loginUser = async (req, res) => {
         // Verificar si el usuario existe
         const user = await UserModel.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'Correo electrónico o contraseña incorrectos' });
+            return res.status(400).json({ message: 'Correo electrónico incorrecto' });
         }
 
         // Verificar la contraseña
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'Correo electrónico o contraseña incorrectos' });
+            return res.status(400).json({ message: 'Contraseña incorrecto' });
         }
 
         // Generar un token JWT para el usuario

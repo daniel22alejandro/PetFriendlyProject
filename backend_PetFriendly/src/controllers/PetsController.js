@@ -1,7 +1,7 @@
 import PetsModel from '../models/PetsModel.js';
 import { validationResult } from 'express-validator';
 import multer from 'multer';
-import mongoose from 'mongoose';
+
 
 
 

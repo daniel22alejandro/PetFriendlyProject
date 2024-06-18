@@ -116,7 +116,7 @@ const EditarComponent = () => {
                     <p>Modificar Mascota</p>
                     <Link to='/' className="bg-[url('../../imgs/btn-close.svg')] w-[34px] h-[34px] flex absolute left-52 cursor-pointer"></Link>
                 </div>
-                <img src={`http://localhost:3000/${mascota.photo}`} alt={mascota.name} className="w-[152px] h-[153px] flex absolute top-32" />
+                <img src={`http://localhost:3000/img/${mascota.photo}`} alt={mascota.name} className="w-[152px] h-[153px] flex absolute top-32" />
                 <form className="flex items-center justify-center flex-col" onSubmit={handleUpdate}>
                     <div className="flex items-center justify-center">
                         <input
